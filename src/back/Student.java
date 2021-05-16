@@ -8,16 +8,27 @@ package back;
 import java.util.ArrayList;
 
 public class Student{
-	private String name;
-	private ArrayList<Unidad> unidades = ArrayList<Unidad>();
+	private String nombre;
+	private ArrayList<Unidad> unidades = new ArrayList<Unidad>();
 	
 	public Student(){
 		
 	}
 	
 	
-	public void addUnidad(){
-		unidades.addUnidad(new Unidad());
+	public void addUnidad(Unidad d){
+		unidades.add(d);
 	}
 	
+	public ArrayList<Unidad> getUnidades(){
+		return unidades;
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public String getNombre(){
+		return nombre;
+	}
 }

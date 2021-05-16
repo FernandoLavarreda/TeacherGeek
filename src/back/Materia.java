@@ -8,6 +8,7 @@ package back;
 import java.util.ArrayList;
 
 public class Materia{
+	private String nombre;
 	private ArrayList<Unidad> unidades;
 	private ArrayList<Student> estudiantes;
 	
@@ -15,19 +16,35 @@ public class Materia{
 	
 	}
 	
-	void addStudent(){
+	public ArrayList<Student> getEstudiantes(){
+		return estudiantes;
+	}
+	
+	public ArrayList<Unidad> getUnidades(){
+		return unidades;
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public void addStudent(Student td){
+		estudiantes.add(td);
+	}
+	
+	public void addUnidad(Unidad unity){
+		unidades.add(unity);
+	}
+	
+	public void removeStudent(){
 		
 	}
 	
-	void addUnidad(){
-		
-	}
-	
-	void removeStudent(){
-		
-	}
-	
-	void removeUnidad(){
+	public void removeUnidad(){
 		
 	}
 }

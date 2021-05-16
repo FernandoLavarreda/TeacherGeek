@@ -5,27 +5,38 @@ Ejercicio, tarea, evaluación que testea los conocimientos de los estudiates sob
 */
 
 package back;
+import java.util.InputMismatchException;
 
 public class Actividad{
 	private String nombre;
 	private double peso;
-	private double nota;
+	private double nota = 0.0;
 	private boolean entregado;
 	private boolean grupal;
 	
-	public Actividad(){
-	
+	public Actividad(String nombre, double peso, double nota, boolean entregado, boolean grupal) throws InputMismatchException{
+		setNombre(nombre);
+		setPeso(peso);
+		setNota(nota);
+		setEntregado(entregado);
+		setGrupal(grupal);
 	}
 	
 	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
 	
-	public void setPeso(double peso){
+	public void setPeso(double peso)throws InputMismatchException{
+		if(peso<0){
+			throw new InputMismatchException("Peso no puede ser negativo");
+		}
 		this.peso = peso;
 	}
 	
 	public void setNota(double nota){
+		if(nota<0){
+			throw new InputMismatchException("Peso no puede ser negativo");
+		}
 		this.nota = nota;
 	}
 	
