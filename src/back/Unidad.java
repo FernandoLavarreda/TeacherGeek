@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 public class Unidad{
 	private double peso;
 	private String nombre;
-	private ArrayList<Unidad> temas;
+	private ArrayList<Unidad> temas = new ArrayList<Unidad>();
 	private ArrayList<Actividad> actividades;
 	private Unidad parent = null;
 	private double lower = 0.0;
@@ -76,7 +76,7 @@ public class Unidad{
 	
 	public void setPeso(double peso)throws InputMismatchException{
 		if(peso>higher||peso<lower){
-			throw new InputMismatchException("Weight out of bounds");
+			throw new InputMismatchException("Peso de tema no válido");
 		}
 		this.peso = peso;
 	}
@@ -84,6 +84,29 @@ public class Unidad{
 	public double getPeso(){
 		return peso;
 	}
+	
+	public Unidad getUnidad(String[] broken){
+		if(broken.length == 1){
+			for(Unidad d:temas){
+				if(d.getNombre().equals(broken[0])){
+					return d;
+				}
+			}
+			return null;
+		}else{
+			for(Unidad d:temas){
+				if(d.getNombre().equals(broken[0])){
+					String[] rest = new String[broken.length-1];
+					for(int i=0; i<rest.length;++i){
+						rest[i] = broken[i+1];
+					}
+					return d.getUnidad(rest);
+				}
+			}
+			return null;
+		}
+	}
+	
 	
 	public void setNombre(String nom){
 		this.nombre = nom;
@@ -97,7 +120,7 @@ public class Unidad{
 		if(parent==null){
 			return getNombre();
 		}else{
-			return parent.getFullNombre();
+			return parent.getFullNombre()+nombre;
 		}
 	}
 	
@@ -110,11 +133,12 @@ public class Unidad{
 	}
 	
 	
-	public void addTema(Unidad tema){
+	public void addTema(Unidad tema)throws InputMismatchException{
 		boolean cont = true;
 		for(Unidad t: temas){
-			if(t.getNombre().equals(tema.getNombre()))
-			cont = false;
+			if(t.getNombre().equals(tema.getNombre())){
+				throw new InputMismatchException("Tema ya existe");
+			}
 		}
 		if(cont){
 			tema.setParent(this);
